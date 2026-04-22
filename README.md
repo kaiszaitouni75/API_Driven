@@ -79,7 +79,13 @@ Si vous rencontrz des problèmes pour l'execution du script essayez
 **chmod +x setup.sh**
 **sudo ./setup.sh**
 
-Une fois le sript terminer un cadre apparaît avec la commande **make** suivi de **start** **stop** **status**, il s'agit d'outil des paramêtre pour gérer votre instance
+Une fois le sript terminer un cadre apparaît avec la commande **make** suivi de
+- start
+- stop
+- status
+Il s'agit des paramêtres pour gérer votre instance
+
+Vous trouverez le script dans ce github
 ---------------------------------------------------
 Evaluation
 ---------------------------------------------------
