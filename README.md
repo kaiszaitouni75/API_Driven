@@ -71,7 +71,15 @@ Difficulté : Facile (~30 minutes)
 ---------------------------------------------------
 **Complétez et documentez ce fichier README.md** pour nous expliquer comment utiliser votre solution.  
 Faites preuve de pédagogie et soyez clair dans vos expliquations et processus de travail.  
-   
+
+##Explication de la solution.
+
+Pour utiliser la solution il suffit de lancer le script **setup.sh** 
+Si vous rencontrz des problèmes pour l'execution du script essayez
+**chmod +x setup.sh**
+**sudo ./setup.sh**
+
+Une fois le sript terminer un cadre apparaît avec la commande **make** suivi de **start** **stop** **status**, il s'agit d'outil des paramêtre pour gérer votre instance
 ---------------------------------------------------
 Evaluation
 ---------------------------------------------------
