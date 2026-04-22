@@ -83,6 +83,7 @@ Une fois le sript terminer un cadre apparaît avec la commande **make** suivi de
 - start
 - stop
 - status
+
 Il s'agit des paramêtres pour gérer votre instance
 
 Vous trouverez le script dans ce github
