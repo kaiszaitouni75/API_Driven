@@ -72,21 +72,74 @@ Difficulté : Facile (~30 minutes)
 **Complétez et documentez ce fichier README.md** pour nous expliquer comment utiliser votre solution.  
 Faites preuve de pédagogie et soyez clair dans vos expliquations et processus de travail.  
 
-##Explication de la solution.
+## Explication de la solution.
 
-Pour utiliser la solution il suffit de lancer le script **setup.sh** 
-Si vous rencontrz des problèmes pour l'execution du script essayez
-**chmod +x setup.sh**
-**sudo ./setup.sh**
+Description du script – API-Driven Infrastructure (LocalStack)
 
-Une fois le sript terminer un cadre apparaît avec la commande **make** suivi de
-- start
-- stop
-- status
+Ce script automatise la mise en place complète d’une infrastructure API-driven en local à l’aide de LocalStack.
+Il simule un environnement AWS et permet de piloter une instance EC2 via une API REST.
 
-Il s'agit des paramêtres pour gérer votre instance
+Objectif
 
-Vous trouverez le script dans ce github
+Créer une chaîne complète :
+API Gateway → Lambda → EC2
+
+L’API permet ensuite de :
+
+démarrer une instance
+arrêter une instance
+vérifier son statut
+Fonctionnement global
+
+Le script exécute les étapes suivantes :
+
+1. Vérification de l’environnement
+Vérifie que LocalStack est actif
+Récupère l’IP interne Docker pour permettre à Lambda de communiquer avec les services
+2. Création des ressources EC2
+Création d’un volume EBS
+Création d’un snapshot
+Création d’une AMI à partir du snapshot
+Lancement d’une instance EC2 basée sur cette AMI
+3. Déploiement d’une fonction Lambda
+Génère dynamiquement une fonction Python
+Cette fonction agit comme un contrôleur EC2
+Elle accepte 3 actions :
+start
+stop
+status
+Elle communique avec EC2 via boto3
+4. Exposition via API Gateway
+Création d’une API REST
+Ajout d’une route /ec2 en POST
+Intégration avec la Lambda (mode proxy)
+Déploiement sur un stage prod
+5. Génération des fichiers utiles
+.env → stocke tous les identifiants (instance, API, etc.)
+Makefile → simplifie les appels API :
+make start
+make stop
+make status
+6. Test automatique
+Envoie une requête status pour valider que tout fonctionne
+🔗 Utilisation
+
+Une fois le script exécuté :
+
+make start   # démarre l'instance
+make stop    # arrête l'instance
+make status  # affiche l'état
+
+Ou directement via l’API :
+
+POST /ec2
+{
+  "action": "start|stop|status",
+  "instance_id": "<ID>"
+}
+
+
+Vous trouverez le script **setup.sh** dans ce represitory
 ---------------------------------------------------
 Evaluation
 ---------------------------------------------------
